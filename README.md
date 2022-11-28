@@ -13,6 +13,7 @@ Additional information about this repository can be found here:
 - [DIY - Universal RC Joystick: concept](https://www.hibit.dev/posts/75/diy-universal-rc-joystick-concept)
 - [DIY - Universal RC Joystick: controls](https://www.hibit.dev/posts/76/diy-universal-rc-joystick-controls)
 - [DIY - Universal RC Joystick: mounting](https://www.hibit.dev/posts/77/diy-universal-rc-joystick-mounting)
+- [DIY - Universal RC Joystick: code](https://www.hibit.dev/posts/78/diy-universal-rc-joystick-code)
 
 ## Credits
 - [nRF24](https://github.com/nRF24)
