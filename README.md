@@ -14,6 +14,7 @@ Additional information about this repository can be found here:
 - [DIY - Universal RC Joystick: controls](https://www.hibit.dev/posts/76/diy-universal-rc-joystick-controls)
 - [DIY - Universal RC Joystick: mounting](https://www.hibit.dev/posts/77/diy-universal-rc-joystick-mounting)
 - [DIY - Universal RC Joystick: code](https://www.hibit.dev/posts/78/diy-universal-rc-joystick-code)
+- [DIY - Universal RC Joystick: receiver](https://www.hibit.dev/posts/79/diy-universal-rc-joystick-receiver)
 
 ## Credits
 - [nRF24](https://github.com/nRF24)
@@ -25,4 +26,4 @@ If you discover any security related issues, please email security@hibit.dev ins
 HiBit is a platform made by and for enthusiasts of the IT world. [On our website](https://www.hibit.dev) you can read and comment on technical articles, tutorials, news ... and everything that may interest you in the computing world.
 
 ## License
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
