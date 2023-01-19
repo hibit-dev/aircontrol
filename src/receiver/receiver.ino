@@ -111,4 +111,3 @@ void lostConnection()
     delay(INTERVAL_MS_SIGNAL_RETRY);
   }
 }
-}
