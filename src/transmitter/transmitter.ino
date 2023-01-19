@@ -12,12 +12,13 @@
 #define RF24_CSN_PIN 10 //PIN 10 must be output to work as SPI master
 
 // Joystick pins
-#define ANALOG_LEFT_X_PIN A4
-#define ANALOG_LEFT_Y_PIN A3
+// Due to physical position of analog modules X and Y axes are inverted
+#define ANALOG_LEFT_X_PIN A3
+#define ANALOG_LEFT_Y_PIN A4
 #define ANALOG_LEFT_BUTTON_PIN A2
 
-#define ANALOG_RIGHT_X_PIN A7
-#define ANALOG_RIGHT_Y_PIN A6
+#define ANALOG_RIGHT_X_PIN A6
+#define ANALOG_RIGHT_Y_PIN A7
 #define ANALOG_RIGHT_BUTTON_PIN A5
 
 #define TOGGLE_UPPER_PIN 3
@@ -34,17 +35,17 @@
 // Default idle values (calibration)
 // Due to physical position of analog modules X and Y axes are inverted
 #define ANALOG_LEFT_X_CORRECTION 127
-#define ANALOG_LEFT_Y_CORRECTION 127
+#define ANALOG_LEFT_Y_CORRECTION 128
 
-#define ANALOG_RIGHT_X_CORRECTION 122
-#define ANALOG_RIGHT_Y_CORRECTION 126
+#define ANALOG_RIGHT_X_CORRECTION 126
+#define ANALOG_RIGHT_Y_CORRECTION 122
 
 // Debug & security
 #define DEBUG false
 #define SECURITY_KEY "hibit" // 10 characters max
 
 // Air Control joystick
-air_control air_control;
+air_control airControl;
 
 // NRF24L01
 RF24 radio(RF24_CE_PIN, RF24_CSN_PIN);
@@ -85,25 +86,25 @@ void setup()
 
 void loop()
 {
-  strcpy(air_control.key, SECURITY_KEY); // Skip if not needed. Default value: hibit
+  strcpy(airControl.key, SECURITY_KEY); // Skip if not needed. Default value: hibit
 
-  air_control.analogs.left = readAnalog(ANALOG_LEFT_X_PIN, ANALOG_LEFT_Y_PIN, ANALOG_LEFT_BUTTON_PIN, ANALOG_LEFT_X_CORRECTION, ANALOG_LEFT_Y_CORRECTION);
-  air_control.analogs.right = readAnalog(ANALOG_RIGHT_X_PIN, ANALOG_RIGHT_Y_PIN, ANALOG_RIGHT_BUTTON_PIN, ANALOG_RIGHT_X_CORRECTION, ANALOG_RIGHT_Y_CORRECTION);
+  airControl.analogs.left = readAnalog(ANALOG_LEFT_X_PIN, ANALOG_LEFT_Y_PIN, ANALOG_LEFT_BUTTON_PIN, ANALOG_LEFT_X_CORRECTION, ANALOG_LEFT_Y_CORRECTION);
+  airControl.analogs.right = readAnalog(ANALOG_RIGHT_X_PIN, ANALOG_RIGHT_Y_PIN, ANALOG_RIGHT_BUTTON_PIN, ANALOG_RIGHT_X_CORRECTION, ANALOG_RIGHT_Y_CORRECTION);
 
-  air_control.toggles.upper = readToggle(TOGGLE_UPPER_PIN);
-  air_control.toggles.lower = readToggle(TOGGLE_LOWER_PIN);
+  airControl.toggles.upper = readToggle(TOGGLE_UPPER_PIN);
+  airControl.toggles.lower = readToggle(TOGGLE_LOWER_PIN);
 
-  air_control.buttons.left.upper = readButton(BUTTON_LEFT_UPPER_PIN);
-  air_control.buttons.left.lower = readButton(BUTTON_LEFT_LOWER_PIN);
-  air_control.buttons.right.upper = readButton(BUTTON_RIGHT_UPPER_PIN);
-  air_control.buttons.right.lower = readButton(BUTTON_RIGHT_LOWER_PIN);
+  airControl.buttons.left.upper = readButton(BUTTON_LEFT_UPPER_PIN);
+  airControl.buttons.left.lower = readButton(BUTTON_LEFT_LOWER_PIN);
+  airControl.buttons.right.upper = readButton(BUTTON_RIGHT_UPPER_PIN);
+  airControl.buttons.right.lower = readButton(BUTTON_RIGHT_LOWER_PIN);
 
-  air_control.potentiometers.left = readPotentiometer(POTENTIOMETER_LEFT_PIN);
-  air_control.potentiometers.right = readPotentiometer(POTENTIOMETER_RIGHT_PIN);
+  airControl.potentiometers.left = readPotentiometer(POTENTIOMETER_LEFT_PIN);
+  airControl.potentiometers.right = readPotentiometer(POTENTIOMETER_RIGHT_PIN);
 
-  radio.write(&air_control, sizeof(air_control));
+  radio.write(&airControl, sizeof(air_control));
 
   if (DEBUG) {
-    debug(air_control);
+    debug(airControl);
   }
 }

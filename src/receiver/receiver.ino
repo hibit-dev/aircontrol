@@ -20,7 +20,7 @@
 #define SECURITY_KEY "hibit"
 
 // Air Control joystick
-air_control air_control;
+air_control airControl;
 
 // NRF24L01
 RF24 radio(RF24_CE_PIN, RF24_CSN_PIN);
@@ -54,14 +54,36 @@ void setup()
 void loop()
 {
   if (radio.available() > 0) {
-    radio.read(&air_control, sizeof(air_control));
+    radio.read(&airControl, sizeof(air_control));
 
-    if (strcmp(air_control.key, SECURITY_KEY) != 0) {
+    if (strcmp(airControl.key, SECURITY_KEY) != 0) {
       invalidConnection(); // Skip if security code is not used
     } else {
       if (DEBUG) {
-        debug(air_control);
+        debug(airControl);
       }
+
+      // TODO
+      // Available values
+
+      // (byte) airControl.analogs.left.x
+      // (byte) airControl.analogs.left.y
+      // (bool) airControl.analogs.left.button.pressed
+
+      // (byte) airControl.analogs.right.x
+      // (byte) airControl.analogs.right.y
+      // (bool) airControl.analogs.right.button.pressed
+
+      // (bool) airControl.toggles.upper.on
+      // (bool) airControl.toggles.lower.on
+
+      // (bool) airControl.buttons.left.upper.pressed
+      // (bool) airControl.buttons.left.lower.pressed
+      // (bool) airControl.buttons.right.upper.pressed
+      // (bool) airControl.buttons.right.lower.pressed
+
+      // (byte) airControl.potentiometers.left.level
+      // (byte) airControl.potentiometers.right.level
 
       lastSignalMillis = millis();
     }
@@ -88,4 +110,5 @@ void lostConnection()
 
     delay(INTERVAL_MS_SIGNAL_RETRY);
   }
+}
 }
