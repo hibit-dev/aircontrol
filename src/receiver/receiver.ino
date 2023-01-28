@@ -89,7 +89,7 @@ void loop()
     }
   }
 
-  if (millis() - lastSignalMillis > INTERVAL_MS_SIGNAL_LOST) {
+  if (lastSignalMillis != 0 && millis() - lastSignalMillis > INTERVAL_MS_SIGNAL_LOST) {
     lostConnection();
   }
 }
